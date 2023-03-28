@@ -5,7 +5,7 @@ class CalcLexer(Lexer):
     tokens = { IDENT, INT_CONSTANT, FLOAT_CONSTANT, STRING_CONSTANT, COMMENT,
                PLUS, MINUS, TIMES, DIVIDE, RESTDIV, ASSIGN,
                NOTEQ, EQ, BEQ, LEQ, BIG, LES,
-               LPAREN, RPAREN, LBRACK, RBRACK, LBRACE, RBRACE,
+               LPAREN, RPAREN, LBRACK, RBRACK, LBRACE, RBRACE, COMMA_POINT,
                DEF, IF, INT, FLOAT, STRING,
                BREAK, NULL,
                READ, RETURN, FOR, PRINT, NEW, ELSE }
@@ -46,12 +46,13 @@ class CalcLexer(Lexer):
     ASSIGN  = r'='
 
     # Parenthesis, brackets, braces
-    LPAREN  = r'\('
-    RPAREN  = r'\)'
-    LBRACK  = r'\['
-    RBRACK  = r'\]'
-    LBRACE  = r'{'
-    RBRACE  = r'}'
+    LPAREN      = r'\('
+    RPAREN      = r'\)'
+    LBRACK      = r'\['
+    RBRACK      = r'\]'
+    LBRACE      = r'{'
+    RBRACE      = r'}'
+    COMMA_POINT = r';'
 
 
 
