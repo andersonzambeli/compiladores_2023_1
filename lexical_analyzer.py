@@ -91,9 +91,11 @@ if __name__ == '__main__':
         lexer = CalcLexer()
         for tok in lexer.tokenize(data):
             print('type=%r, value=%r, index = %r' % (tok.type, tok.value, tok.index))
-            symbols.table.setdefault(tok.value, []).append((i , tok.index + 1))
-            tokens.append([tok.value,tok.type])
-            #print(symbols.table)
+            if(tok.type != 'COMMENT'):
+                            
+                            symbols.table.setdefault(tok.value, []).append((i + 1 , tok.index + 1))
+                            tokens.append([tok.value,tok.type])
+                            #print(symbols.table)
     
     print(symbols.table)
     for i in range(len(tokens)):
