@@ -1,5 +1,9 @@
 from sly import Lexer
 
+class SymbolTable():
+    def __init__(self) -> None:
+        self.table = {}
+
 class CalcLexer(Lexer):
     # Set of token names.   This is always required
     tokens = { IDENT, INT_CONSTANT, FLOAT_CONSTANT, STRING_CONSTANT, COMMENT,
@@ -22,7 +26,7 @@ class CalcLexer(Lexer):
 
     # ID
     IDENT               = r'[a-z][a-zA-Z0-9_]*'
-    FLOAT_CONSTANT      = r'[0-9]+.[0-9]+'
+    FLOAT_CONSTANT      = r'[0-9]+\.[0-9]+'
     INT_CONSTANT        = r'[0-9]+'
     STRING_CONSTANT     = r'\'[a-zA-Z0-9_ ]*\''
     COMMENT             = r'#[^\n]*'
@@ -79,9 +83,18 @@ class CalcLexer(Lexer):
 if __name__ == '__main__':
     f = open('test', 'r')
     n = f.readlines()
+    symbols = SymbolTable()
+    tokens = []
     for i in range(0,len(n)):
         print(n[i])
         data = n[i]
         lexer = CalcLexer()
         for tok in lexer.tokenize(data):
-            print('type=%r, value=%r' % (tok.type, tok.value))
+            print('type=%r, value=%r, index = %r' % (tok.type, tok.value, tok.index))
+            symbols.table.setdefault(tok.value, []).append((i , tok.index + 1))
+            tokens.append([tok.value,tok.type])
+            #print(symbols.table)
+    
+    print(symbols.table)
+    for i in range(len(tokens)):
+        print(tokens[i][0], tokens[i][1])
