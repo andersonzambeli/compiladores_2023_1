@@ -49,25 +49,6 @@ class CalcLexer(Lexer):
         ELSE,
     }
 
-    # reserved = [
-    #     "def",
-    #     "if",
-    #     "int",
-    #     "float",
-    #     "string",
-    #     "break",
-    #     "int_constant",
-    #     "float_constant",
-    #     "string constant",
-    #     "null",
-    #     "read",
-    #     "return",
-    #     "for",
-    #     "print",
-    #     "new",
-    #     "else",
-    # ]
-
     # String containing ignored characters between tokens
     ignore = " \t \n"
 
@@ -106,7 +87,6 @@ class CalcLexer(Lexer):
     COMMA_POINT = r";"
 
     # Reserved words
-    # #reserved = {'def', 'if', 'int', 'float', 'string', 'break', 'null', 'read', 'return', 'for', 'print', 'new', 'else'
     IDENT["def"] = DEF
     IDENT["if"] = IF
     IDENT["int"] = INT
