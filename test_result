@@ -1,0 +1,37 @@
+nome    ocorrencias
+------  --------------------------
+soma_n  [(1, 5)]
+a       [(1, 16), (3, 9), (3, 13)]
+i       [(2, 9), (2, 15), (2, 22)]
+
+lexema    padrao
+--------  --------------
+def       DEF
+soma_n    IDENT
+(         LPAREN
+int       INT
+a         IDENT
+)         RPAREN
+{         LBRACE
+for       FOR
+(         LPAREN
+i         IDENT
+=         ASSIGN
+0         INT_CONSTANT
+;         COMMA_POINT
+i         IDENT
+==        EQ
+2.5       FLOAT_CONSTANT
+;         COMMA_POINT
+i         IDENT
++         PLUS
+1555555   INT_CONSTANT
+)         RPAREN
+{         LBRACE
+a         IDENT
+=         ASSIGN
+a         IDENT
++         PLUS
+1         INT_CONSTANT
+}         RBRACE
+}         RBRACE

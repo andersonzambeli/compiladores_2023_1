@@ -1,4 +1,5 @@
 from sly import Lexer
+from tabulate import tabulate
 
 
 class SymbolTable:
@@ -124,24 +125,27 @@ class CalcLexer(Lexer):
 def main():
     f = open("test", "r")
     n = f.readlines()
-    symbols = SymbolTable()
+    st = SymbolTable()
+
     tokens = []
     for i in range(0, len(n)):
         print(n[i])
+
         data = n[i]
         lexer = CalcLexer()
+
         for tok in lexer.tokenize(data):
             print("type=%r, value=%r, index = %r" % (tok.type, tok.value, tok.index))
+
             if tok.type != "COMMENT":
                 if tok.type == "IDENT":
-                    symbols.table.setdefault(tok.value, []).append(
+                    st.table.setdefault(tok.value, []).append(
                         (i + 1, tok.index + 1)
                     )
                 tokens.append([tok.value, tok.type])
 
-    print(symbols.table)
-    for i in range(len(tokens)):
-        print(tokens[i][0], tokens[i][1])
+    print(tabulate([(k, v) for k, v in st.table.items()], headers=["nome", "ocorrencias"]))
+    print(tabulate(tokens, headers=["lexema", "padrao"]))
 
 if __name__ == "__main__":
     main()
