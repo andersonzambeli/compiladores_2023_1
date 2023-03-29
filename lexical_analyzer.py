@@ -103,7 +103,7 @@ class CalcLexer(Lexer):
 
 
 def main():
-    f = open("test", "r")
+    f = open("test.lcc", "r")
     n = f.readlines()
     st = SymbolTable()
 

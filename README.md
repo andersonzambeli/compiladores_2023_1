@@ -1,5 +1,5 @@
 # Dependencies
-Tested in python 3.10 and 3.11
+Tested in python 3.10 and 3.11.
 
 `python -m pip install -r requirements.txt`
 
@@ -8,8 +8,8 @@ Tested in python 3.10 and 3.11
 
 # Config
 
-Change file `test` in the moment
+Change file `test.lcc`
 
 # Result
 
-the result will be printed but an example is present on file test_result
+The result will be printed but an example is present on file test_result.
