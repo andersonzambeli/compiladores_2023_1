@@ -139,13 +139,14 @@ def main():
 
             if tok.type != "COMMENT":
                 if tok.type == "IDENT":
-                    st.table.setdefault(tok.value, []).append(
-                        (i + 1, tok.index + 1)
-                    )
+                    st.table.setdefault(tok.value, []).append((i + 1, tok.index + 1))
                 tokens.append([tok.value, tok.type])
 
-    print(tabulate([(k, v) for k, v in st.table.items()], headers=["nome", "ocorrencias"]))
+    print(
+        tabulate([(k, v) for k, v in st.table.items()], headers=["nome", "ocorrencias"])
+    )
     print(tabulate(tokens, headers=["lexema", "padrao"]))
+
 
 if __name__ == "__main__":
     main()
