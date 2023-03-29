@@ -1,15 +1,27 @@
-# Dependencies
-Tested in python 3.10 and 3.11.
+# Análisador Léxico
 
-`python -m pip install -r requirements.txt`
+Análisador léxico construído para disciplina INE5426-06208 (20231) - Construção de Compiladores para gramática CC-2023-1. Feito pelos alunos Felipe Valentin Nascimento (20100523) e Anderson Sales Zambeli (20104138).
 
-# Run
-`python lexical_analyzer.py`
+## Instalação
+### Ferramentas:
+Antes de instalar as bibliotecas é necessário instalar as ferramentas:
+- python 3.10.6
+- pip (normalmente vem com python)
+- make
 
-# Config
+### Bibliotecas
+As bibliotecas utilizadas estão dentro da pasta requirements.txt e podem ser instaladas:
+```shell
+$ make setup
+```
 
-Change file `test.lcc`
+## Execução
+Para rodar basta executar:
 
-# Result
+```shell
+$ make run FILE="path-to-file"
+```
 
-The result will be printed but an example is present on file test_result.
+## Programas
+
+Adicionar novos arquivos de programas no diretório `codes`.

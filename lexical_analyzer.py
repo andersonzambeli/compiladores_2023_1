@@ -1,14 +1,13 @@
+import sys
+
 from sly import Lexer
 from tabulate import tabulate
+from collections import defaultdict
 
-
-class SymbolTable:
-    def __init__(self) -> None:
-        self.table = {}
 
 
 class CalcLexer(Lexer):
-    # Set of token names.   This is always required
+    # Set of token names.
     tokens = {
         IDENT,
         INT_CONSTANT,
@@ -50,16 +49,15 @@ class CalcLexer(Lexer):
     }
 
     # String containing ignored characters between tokens
-    ignore = " \t \n"
+    ignore = " \t"
 
-    # Regular expression rules for tokens
-
+    # Regular expression definitions
     # ID
     IDENT = r"[a-z][a-zA-Z0-9_]*"
     FLOAT_CONSTANT = r"[0-9]+\.[0-9]+"
     INT_CONSTANT = r"[0-9]+"
     STRING_CONSTANT = r"\'[a-zA-Z0-9_ ]*\'"
-    COMMENT = r"#[^\n]*"
+    ignore_comment = r"\#.*"
 
     # Comparison Operators
     NOTEQ = r"!="
@@ -101,31 +99,52 @@ class CalcLexer(Lexer):
     IDENT["new"] = NEW
     IDENT["else"] = ELSE
 
+    # Line number tracking
+    @_(r"\n+")
+    def ignore_newline(self, token):
+        self.lineno += token.value.count("\n")
+
+    def error(self, token):
+        column = self.find_column(token)
+        raise Exception(
+            f"Line {self.lineno}, Column: {column}: Bad character {token.value[0]}"
+        )
+
+    def find_column(self, token):
+        last_cr = self.text.rfind("\n", 0, token.index)
+        if last_cr < 0:
+            last_cr = 0
+        column = (token.index - last_cr) + 1
+        return column
+
+
+class SymbolTable:
+    def __init__(self):
+        self.table = defaultdict(lambda: defaultdict(lambda: []))
+
+    def __repr__(self):
+        headers = [
+            key for value in self.table.values() for key in ["lexeme", *value.keys()]
+        ]
+        table = ((k1, *v1.values()) for k1, v1 in self.table.items())
+        return tabulate(table, headers, "rounded_grid")
+
+    def __getitem__(self, item):
+        return self.table[item]
+
 
 def main():
-    f = open("test.lcc", "r")
-    n = f.readlines()
-    st = SymbolTable()
-
-    tokens = []
-    for i in range(0, len(n)):
-        print(n[i])
-
-        data = n[i]
+    file_name = sys.argv[1]
+    with open(f"codes/{file_name}", "r") as file:
+        code = file.read()
         lexer = CalcLexer()
-
-        for tok in lexer.tokenize(data):
-            print("type=%r, value=%r, index = %r" % (tok.type, tok.value, tok.index))
-
-            if tok.type != "COMMENT":
-                if tok.type == "IDENT":
-                    st.table.setdefault(tok.value, []).append((i + 1, tok.index + 1))
-                tokens.append([tok.value, tok.type])
-
-    print(
-        tabulate([(k, v) for k, v in st.table.items()], headers=["nome", "ocorrencias"])
-    )
-    print(tabulate(tokens, headers=["lexema", "padrao"]))
+        symbol_table = SymbolTable()
+        for token in lexer.tokenize(code):
+            # print(token)
+            if token.type == "IDENT":
+                print(token.lineno, token.value, token.index)
+                symbol_table[token.value]["ocurrence"].append(token.index)
+        # print(symbol_table)
 
 
 if __name__ == "__main__":

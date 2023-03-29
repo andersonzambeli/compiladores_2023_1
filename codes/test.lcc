@@ -1,4 +1,4 @@
-def soma_n(int a) {
+def soma_n(int @a) {
     for(i=0 ; i==2.5;i+1555555){# comment
         a = a+1
     } #comment
