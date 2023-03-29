@@ -92,8 +92,8 @@ if __name__ == '__main__':
         for tok in lexer.tokenize(data):
             print('type=%r, value=%r, index = %r' % (tok.type, tok.value, tok.index))
             if(tok.type != 'COMMENT'):
-                            
-                            symbols.table.setdefault(tok.value, []).append((i + 1 , tok.index + 1))
+                            if( tok.type == 'IDENT'):
+                                 symbols.table.setdefault(tok.value, []).append((i + 1 , tok.index + 1))
                             tokens.append([tok.value,tok.type])
                             #print(symbols.table)
     
