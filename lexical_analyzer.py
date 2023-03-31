@@ -7,6 +7,10 @@ from collections import defaultdict
 
 
 class CalcLexer(Lexer):
+    
+    def __init__(self):
+        self.old_index = 0
+    
     # Set of token names.
     tokens = {
         IDENT,
@@ -103,6 +107,7 @@ class CalcLexer(Lexer):
     @_(r"\n+")
     def ignore_newline(self, token):
         self.lineno += token.value.count("\n")
+        self.old_index = self.index
 
     def error(self, token):
         column = self.find_column(token)
@@ -142,8 +147,8 @@ def main():
         for token in lexer.tokenize(code):
             # print(token)
             if token.type == "IDENT":
-                print(token.lineno, token.value, token.index)
-                symbol_table[token.value]["ocurrence"].append(token.index)
+                print(token.lineno, token.value, token.index - lexer.old_index)
+                symbol_table[token.value]["ocurrence"].append((token.lineno, token.index - lexer.old_index))
         # print(symbol_table)
 
 
