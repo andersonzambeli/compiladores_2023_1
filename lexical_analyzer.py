@@ -112,9 +112,10 @@ class CalcLexer(Lexer):
 
     def error(self, token):
         column = self.find_column(token)
-        raise Exception(
-            f"Erro léxico; Linha {self.lineno}; Coluna: {column}; Caracter inválido: {token.value[0]}"
+        print(
+            f"Erro léxico, Linha {self.lineno}, Coluna: {column}, Carácter inválido: {token.value[0]}"
         )
+        exit()
 
     def find_column(self, token):
         last_cr = self.text.rfind("\n", 0, token.index)
