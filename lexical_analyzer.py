@@ -1,3 +1,4 @@
+# Felipe Valentin Nascimento (20100523) e  Anderson Sales Zambeli (20104138).
 import sys
 
 from sly import Lexer
@@ -5,11 +6,10 @@ from tabulate import tabulate
 from collections import defaultdict
 
 
-
 class CalcLexer(Lexer):
     def __init__(self):
         self.old_index = 0
-    
+
     # Set of token names.
     tokens = {
         IDENT,
@@ -113,7 +113,7 @@ class CalcLexer(Lexer):
     def error(self, token):
         column = self.find_column(token)
         raise Exception(
-            f"Line {self.lineno}, Column: {column}: Bad character {token.value[0]}"
+            f"Erro léxico; Linha {self.lineno}; Coluna: {column}; Caracter inválido: {token.value[0]}"
         )
 
     def find_column(self, token):
@@ -145,13 +145,17 @@ def main():
         code = file.read()
         lexer = CalcLexer()
         symbol_table = SymbolTable()
+        token_list = []
+
         for token in lexer.tokenize(code):
-            # print(token)
+            token_list.append([token.value, token.type])
+
             if token.type == "IDENT":
                 print(token.lineno, token.value, token.index - lexer.old_index)
                 symbol_table[token.value]["ocurrence"].append((token.lineno, token.index - lexer.old_index))
-        print(symbol_table)
 
+        print(symbol_table)
+        print(tabulate(token_list))
 
 if __name__ == "__main__":
     main()
