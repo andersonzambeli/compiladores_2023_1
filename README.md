@@ -24,4 +24,4 @@ $ make run FILE="path-to-file"
 
 ## Programas
 
-Adicionar novos arquivos de programas no diretório `codes`.
+Os programas de teste podem ser encontrados no diretório `examples`.

@@ -68,6 +68,15 @@ def func3(int a, int b)
   return;
 }
 
+def func4(int arr, int a, int b, int c)
+{
+  arr[0] = a + b;
+  arr[1] = b * c;
+  arr[2] = a * c;
+  arr[3] = a + a;
+  return;
+}
+
 def main()
 {
   int c;
