@@ -5,7 +5,7 @@ Análisador léxico construído para disciplina INE5426-06208 (20231) - Constru�
 ## Instalação
 ### Ferramentas:
 Antes de instalar as bibliotecas é necessário instalar as ferramentas:
-- python 3.10.6
+- python 3.10.6 (testado também com a 3.11.2)
 - pip (normalmente vem com python)
 - make
 
@@ -22,6 +22,7 @@ Para rodar basta executar:
 ```shell
 make run FILE="path-to-file"
 ```
+A saída será no terminal, uma lista de tokens e uma tabela de símbolos.
 
 ## Programas
 
