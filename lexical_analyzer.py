@@ -151,11 +151,13 @@ def main():
             token_list.append([token.value, token.type])
 
             if token.type == "IDENT":
-                print(token.lineno, token.value, token.index - lexer.old_index)
                 symbol_table[token.value]["ocurrence"].append((token.lineno, token.index - lexer.old_index))
 
-        print(symbol_table)
+        print("Lista de tokens")
         print(tabulate(token_list))
+
+        print("Tabela de símbolos")
+        print(symbol_table)
 
 if __name__ == "__main__":
     main()
