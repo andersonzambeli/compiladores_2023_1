@@ -20,7 +20,7 @@ make setup
 Para rodar basta executar:
 
 ```shell
-make run FILE="pathto-file"
+make run FILE="path-to-file"
 ```
 A saída será no terminal, uma lista de tokens e uma tabela de símbolos.
 
