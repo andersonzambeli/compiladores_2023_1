@@ -1,0 +1,125 @@
+def linearsearch(int arr, int size, int val)
+{
+    int i;
+    for (i = 0; i < size; i++)
+    {
+        if (arr[i] == val)
+            return 1;
+    }
+    return 0;
+}
+
+int binarysearch1(const int arr, int l, int r, int x)
+{
+    if (r >= l)
+    {
+        int mid = l + (r - l) / 2;
+
+        # If element is present at middle
+        if (arr[mid] == x)
+            return mid;
+
+        # If element is smaller than middle
+        if (arr[mid] > x)
+            return binarysearch1(arr, l, mid - 1, x);
+
+        # Else element is in right subarray
+        return binarysearch1(arr, mid + 1, r, x);
+    }
+
+    # When element is not present in array
+    return -1;
+}
+
+int jump_search(const int *arr, int x, size_t n)
+{
+    int step = floor(sqrt(n));
+    int prev = 0;
+
+    while (arr[min(step, n) - 1] < x)
+    {
+        prev = step;
+        step += floor(sqrt(n));
+        if (prev >= n)
+        {
+            return -1;
+        }
+    }
+
+    while (arr[prev] < x)
+    {
+        prev = prev + 1;
+        if (prev == min(step, n))
+        {
+            return -1;
+        }
+    }
+    if (arr[prev] == x)
+    {
+        return prev;
+    }
+    return -1;
+}
+
+# Naive Pattern Search algorithm (brute force way)
+void naive_search(char str, char pattern)
+{
+    int len_str = strlen(str);
+    int len_pat = strlen(pattern);
+
+    for (int i = 0; i <= len_str - len_pat; i++)
+    {
+        int j;
+        for (j = 0; j < len_pat; j++)
+        {
+            if (str[i + j] != pattern[j])
+                break;
+        }
+        if (j == len_pat)
+            print pattern is found at i
+    }
+}
+
+int fib(int number)
+{
+    if (number == 1)
+        return 1;
+    else
+        if number == 2
+            return 1;
+        else
+            return fib(number - 1) + fib(number - 2);
+}
+
+# Euclid's algorithm
+int GCD(int x, int y)
+{
+    if (y == 0)
+        return x;
+    return GCD(y, x % y);
+}
+
+bool isPrime(int x)
+{
+    if (x == 2)
+    {
+        return true;
+    }
+    if (x < 2)
+    {
+        return false;
+    }
+    if (x % 2 == 0)
+        return false;
+
+    double squareRoot = sqrt(x);
+
+    for (int i = 3; i <= squareRoot; i += 2)
+    {
+        if (x % i == 0)
+        {
+            return false;
+        }
+    }
+    return true;
+}

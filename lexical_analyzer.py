@@ -7,7 +7,6 @@ from collections import defaultdict
 
 
 class CalcLexer(Lexer):
-    
     def __init__(self):
         self.old_index = 0
     
@@ -36,6 +35,7 @@ class CalcLexer(Lexer):
         RBRACK,
         LBRACE,
         RBRACE,
+        COMMA,
         COMMA_POINT,
         DEF,
         IF,
@@ -57,7 +57,7 @@ class CalcLexer(Lexer):
 
     # Regular expression definitions
     # ID
-    IDENT = r"[a-z][a-zA-Z0-9_]*"
+    IDENT = r"[a-zA-Z][a-zA-Z0-9_]*"
     FLOAT_CONSTANT = r"[0-9]+\.[0-9]+"
     INT_CONSTANT = r"[0-9]+"
     STRING_CONSTANT = r"\'[a-zA-Z0-9_ ]*\'"
@@ -86,6 +86,7 @@ class CalcLexer(Lexer):
     RBRACK = r"\]"
     LBRACE = r"{"
     RBRACE = r"}"
+    COMMA = r","
     COMMA_POINT = r";"
 
     # Reserved words
@@ -139,8 +140,8 @@ class SymbolTable:
 
 
 def main():
-    file_name = sys.argv[1]
-    with open(f"codes/{file_name}", "r") as file:
+    file_path = sys.argv[1]
+    with open(file_path, "r") as file:
         code = file.read()
         lexer = CalcLexer()
         symbol_table = SymbolTable()
@@ -149,7 +150,7 @@ def main():
             if token.type == "IDENT":
                 print(token.lineno, token.value, token.index - lexer.old_index)
                 symbol_table[token.value]["ocurrence"].append((token.lineno, token.index - lexer.old_index))
-        # print(symbol_table)
+        print(symbol_table)
 
 
 if __name__ == "__main__":
