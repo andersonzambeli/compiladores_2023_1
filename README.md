@@ -11,15 +11,16 @@ Antes de instalar as bibliotecas é necessário instalar as ferramentas:
 
 ### Bibliotecas
 As bibliotecas utilizadas estão dentro da pasta requirements.txt e podem ser instaladas:
+
 ```shell
-$ make setup
+make setup
 ```
 
 ## Execução
 Para rodar basta executar:
 
 ```shell
-$ make run FILE="path-to-file"
+make run FILE="path-to-file"
 ```
 
 ## Programas
