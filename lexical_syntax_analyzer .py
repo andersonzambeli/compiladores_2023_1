@@ -17,7 +17,6 @@ class CalcLexer(Lexer):
         INT_CONSTANT,
         FLOAT_CONSTANT,
         STRING_CONSTANT,
-        COMMENT,
         PLUS,
         MINUS,
         TIMES,
@@ -521,6 +520,7 @@ class CalcParser(Parser):
             lineno = getattr(p, 'lineno', 0)
             if lineno:
                 sys.stderr.write(f'Syntax error at line {lineno}, token={p.type}\n')
+                print(self.symstack, "\n")
                 sys.exit()
             else:
                 sys.stderr.write(f'Syntax error, token={p.type}')
