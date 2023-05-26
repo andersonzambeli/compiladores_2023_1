@@ -1,7 +1,8 @@
 def soma_n(int a, int n, int s) {
-    for(i=0 ; i<n; i+1){# comment
-        a = a+s
-    } #comment
+    for(i=0 ; i<n; i = i+1)
+     #comment
+      a = a+s;
+     #comment
     return a;
 #comment
 }
@@ -11,7 +12,8 @@ def exp(int n, int x){
     res = 1;
     int i;
     i = 0;
-    for(i = 0; i < x - 1; i + 1){
+    for(i = 0; i < x - 1; i = i + 1)
+    {
         res = res * n;
     }
     return res;
@@ -19,48 +21,60 @@ def exp(int n, int x){
 
 }
 
-def func1 {
-{
+def funcao1 () {
+
   float x;
   float z;
   int i;
   int max;
   x = 0;
   max = 10000;
-  for (i = 1; i <= max; i = i + 1){
+  for (i = 1; i <= max; i = i + 1)
+  {
     print x;
     x = x + 0.001;
     z = x;
-    if (z != x){
+    if (z != x)
+    
+      {{
       print 'Erro numerico na atribuicao de numeros na notacao ponto flutuante' ;
       break;
+      }}
+      
     }
-  }
+  
 }
 
 
-def func2 {
-  int y;
+def funcao2 () {
+  int y; 
   int j;
   int i;
   y = new int[10];
   j = 0;
-  for (i = 0; i < 20; i = i + 1) 
-    if (i % 2 == 0){
+  for (i = 0; i < 20; i = i + 1)
+  {
+    if (i % 2 == 0)
+    {{
       y[j] = i + 1;
       j = j + 1;
-    }
+    }}
     else
+    {{
       print 0;
+    }}
+  }
 
   for (i = 0; i < 10; i = i + 1)
+  {
     print y[i];
+  }
 
   return;
 }
-}
 
-def func3(int a, int b)
+
+def funcao3(int a, int b)
 {
   int sm[2];
   sm[0] = a + b;
@@ -68,7 +82,7 @@ def func3(int a, int b)
   return;
 }
 
-def func4(int arr, int a, int b, int c)
+def funcao4(int arr, int a, int b, int c)
 {
   arr[0] = a + b;
   arr[1] = b * c;
@@ -84,17 +98,20 @@ def main()
   int r;
   c = 4;
   d = 5;
-  r = func3(c, d);
+  r = func funcao3(c, d);
   int a;
   int s;
   s = 5;
-  a = soma_n(a,6,s);
+  int s2;
+  s2 = 6;
+  a = func soma_n(a,s2,s);
   print 'O resultado foi';
   print a;
-  func1();
-  func2();
+  s = func funcao1();
+  s2 = func funcao2();
   int k;
-  k = exp(5 , 2);
+  s2 = 2;
+  k = func exp(d , s2);
   print k;
 
   return;
