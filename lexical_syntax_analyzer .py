@@ -52,7 +52,6 @@ class CalcLexer(Lexer):
         NEW,
         ELSE,
         FUNC,
-        PROGRAM,
     }
 
     # String containing ignored characters between tokens
@@ -107,7 +106,7 @@ class CalcLexer(Lexer):
     IDENT["new"] = NEW
     IDENT["else"] = ELSE
     IDENT["func"] = FUNC
-    IDENT["program"] = PROGRAM
+    
 
     # Line number tracking
     @_(r"\n+")
@@ -271,7 +270,6 @@ class CalcParser(Parser):
     
     @_('INT IDENT e1')
     def vardecl(self, p):
-        print("Usei vardecl \n")
         return
     
     @_('FLOAT IDENT e1')
@@ -292,7 +290,6 @@ class CalcParser(Parser):
     
     @_('lvalue ASSIGN f4')
     def atribstat(self, p):
-        print("Usei atribstat \n")
         return
     
     @_('expression')
@@ -509,7 +506,6 @@ class CalcParser(Parser):
     
     @_('IDENT e5')
     def lvalue(self, p):
-        print("Usei LVALUE \n")
         return
     
     @_('LBRACK numexpression RBRACK f8')
@@ -519,6 +515,20 @@ class CalcParser(Parser):
     @_('empty')
     def e5(self, p):
         return
+    
+    def error(self, p):
+        if p:
+            lineno = getattr(p, 'lineno', 0)
+            if lineno:
+                sys.stderr.write(f'Syntax error at line {lineno}, token={p.type}\n')
+                sys.exit()
+            else:
+                sys.stderr.write(f'Syntax error, token={p.type}')
+                sys.exit()
+        else:
+            sys.stderr.write('Parse error in input. EOF\n')
+        
+    
 
 
 class SymbolTable:
@@ -558,7 +568,9 @@ def main():
 
         parser = CalcParser()
         result = parser.parse(lexer.tokenize(code))
-        print(result)
+        if (result == None):
+            print("Sucesso na análise sintática!!!")
+        
 
 if __name__ == "__main__":
     main()
