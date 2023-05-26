@@ -1,59 +1,40 @@
 def linearsearch(int arr, int size, int val)
 {
     int i;
-    for (i = 0; i < size; i++)
+    for (i = 0; i < size; i = i + 1)
     {
         if (arr[i] == val)
+        {
             return 1;
+        }
     }
     return 0;
 }
 
-int binarysearch1(const int arr, int l, int r, int x)
+def binarysearch1( int arr, int l, int r, int x)
 {
     if (r >= l)
-    {
-        int mid = l + (r - l) / 2;
+    { {  
+        int mid;
+        mid = l + (r - l) / 2;
+        return mid;
 
-        # If element is present at middle
-        if (arr[mid] == x)
-            return mid;
-
-        # If element is smaller than middle
-        if (arr[mid] > x)
-            return binarysearch1(arr, l, mid - 1, x);
-
-        # Else element is in right subarray
-        return binarysearch1(arr, mid + 1, r, x);
-    }
+    }}
 
     # When element is not present in array
     return -1;
 }
 
-int jump_search(const int *arr, int x, size_t n)
+def jump_search( int arr, int x, int n)
 {
-    int step = floor(sqrt(n));
-    int prev = 0;
+    int a;
+    a = func sqrt(n);
+    int step;
+    int prev;
+    step = func floor(a);
+    prev = 0;
 
-    while (arr[min(step, n) - 1] < x)
-    {
-        prev = step;
-        step += floor(sqrt(n));
-        if (prev >= n)
-        {
-            return -1;
-        }
-    }
-
-    while (arr[prev] < x)
-    {
-        prev = prev + 1;
-        if (prev == min(step, n))
-        {
-            return -1;
-        }
-    }
+    
     if (arr[prev] == x)
     {
         return prev;
@@ -62,44 +43,75 @@ int jump_search(const int *arr, int x, size_t n)
 }
 
 # Naive Pattern Search algorithm (brute force way)
-void naive_search(char str, char pattern)
+def naive_search(string str, string pattern)
 {
-    int len_str = strlen(str);
-    int len_pat = strlen(pattern);
+    int len_str;
+    int len_pat;
+    len_str = func strlen(str);
+    len_pat = func strlen(pattern);
+    int t1;
+    t = len_str - len_pat;
+    int i;
 
-    for (int i = 0; i <= len_str - len_pat; i++)
+    for (i = 0; i <= t ; i = i + 1)
     {
         int j;
-        for (j = 0; j < len_pat; j++)
+        for (j = 0; j < len_pat; j=j+1)
         {
             if (str[i + j] != pattern[j])
+            {
                 break;
+            }
         }
         if (j == len_pat)
-            print pattern is found at i
+        {
+            print 'pattern is found at i';
+        }
     }
 }
 
-int fib(int number)
+def fib(int number)
 {
     if (number == 1)
+    {
         return 1;
+    }
     else
-        if number == 2
+    {
+        if (number == 2)
+        {
             return 1;
+        }
         else
-            return fib(number - 1) + fib(number - 2);
+        {{
+            int r;
+            int t1;
+            int t2;
+            t1 = number - 1;
+            t2 = number - 2;
+            r = func fib(t1);
+            t1 = func fib(t2);
+            r = r + t1;
+            return r;
+        }}
+   }
 }
 
 # Euclid's algorithm
-int GCD(int x, int y)
+def GCD(int x, int y)
 {
     if (y == 0)
+    {
         return x;
-    return GCD(y, x % y);
+    }
+    int t1;
+    int t2;
+    t2 = x % y;
+    t = func GCD(y, t2);
+    return t;
 }
 
-bool isPrime(int x)
+def isPrime(int x)
 {
     if (x == 2)
     {
@@ -110,11 +122,14 @@ bool isPrime(int x)
         return false;
     }
     if (x % 2 == 0)
+    {
         return false;
+    }
+    int squareRoot;
+    squareRoot = func sqrt(x);
+    int i;
 
-    double squareRoot = sqrt(x);
-
-    for (int i = 3; i <= squareRoot; i += 2)
+    for (i = 3; i <= squareRoot; i = i + 2)
     {
         if (x % i == 0)
         {
