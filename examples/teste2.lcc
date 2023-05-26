@@ -1,34 +1,40 @@
-def calc_area_circulo( float r) {
+def calc_area_circulo( float r)
+{
     float area;
     area = r*r*3.14;
     return area;
 }
 
-def calc_tam_circunferencia ( float r) {
+def calc_tam_circunferencia ( float r)
+{
     float tam;
     tam = 2*3.14*r;
     return tam;
 }
 
-def calc_area_quadrado( float l) {
+def calc_area_quadrado( float l)
+{
     float area;
     area = l*l;
     return area;
 }
 
-def calc_area_retangulo( float l1, float l2) {
+def calc_area_retangulo( float l1, float l2)
+{
     float area;
     area = l1*l2;
     return area;
 }
 
-def calc_area_trapezio( float b1, b2, h) {
+def calc_area_trapezio( float b1,  float b2, float h)
+{
     float area;
     area = (b1 + b2)*h / 2;
     return area;
 }
 
-def calc_area_triangulo(float b, float a){
+def calc_area_triangulo(float b, float a)
+{
     # b é a base e a é a altura
     float area;
     area = b*a/2;
@@ -36,7 +42,8 @@ def calc_area_triangulo(float b, float a){
 
 }
 
-def calc_seno(float co, float h){
+def calc_seno(float co, float h)
+{
     # co é o cateto oposto e h a hipotenusa do triangulo
     float seno;
     seno = co/h;
@@ -50,53 +57,70 @@ def calc_cosseno(float ca, float h){
     return cosseno;
 }
 
-def calc_tangente(float co, float ca){
+def calc_tangente(float co, float ca)
+{
     # co é o cateto oposto ca é o cateto adjacente do triangulo
     float tangente;
     tangente = co/ca;
     return tangente;
 }
 
-def calc_volume_esfera( float r) {
+def calc_volume_esfera( float r)
+{
     float vol;
     vol = r*r*r*3.14*4/3;
     return vol;
 }
 
-def calc_volume_paralelogramo(float b, float h, float p){
+def calc_volume_paralelogramo(float b, float h, float p)
+{
     float vol;
     vol = b*h*p;
     return vol;
 }
 
-def fatorial( int n){
+def fatorial( int n)
+{
     int i;
     i = 0;
     int a;
-    for(i = 0; i < n ; i + 1){
-        if (i == 0){
+    for(i = 0; i < n ;i = i + 1)
+    {
+        if (i == 0)
+        {
             a = 1;
         }
-        else{
+        else
+        {
             a = a*(a+1);
         }
     }
 }
 
-def main(){
+def main()
+{
     float a1;
-    a1 = calc_area_circulo(4.0);
+    float t1;
+    float t2;
+    float t3;
+    t1 = 4.0;
+    a1 = func calc_area_circulo( t1 );
     print a1;
-    a1 = calc_area_triangulo( 2.0, 6.5);
+    t1 = 2.0; 
+    t2 = 6.5;
+    a1 = func calc_area_triangulo( t1 , t2);
     print a1;
-    a1 = calc_area_trapezio(2.44, 6.1, 10.0)
+    t1 = 2.44;
+    t2 = 6.1;
+    t3 = 10.0;
+    a1 = func calc_area_trapezio(t1 , t2, t3);
     print a1;
     float seno1;
-    seno1 = calc_seno(4.0, 5.0);
+    seno1 = func calc_seno(t1, t2);
     print seno1;
     int fat_5;
-    fat_5 = fatorial( 5 );
+    int b;
+    b = 5;
+    fat_5 = func fatorial( b );
     print fat_5;
 }
-
-    
