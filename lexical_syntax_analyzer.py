@@ -520,7 +520,7 @@ class CalcParser(Parser):
             lineno = getattr(p, 'lineno', 0)
             if lineno:
                 sys.stderr.write(f'Syntax error at line {lineno}, token={p.type}\n')
-                print(self.symstack, "\n")
+                print('Stack:', [symbol.type for symbol in self.symstack])
                 sys.exit()
             else:
                 sys.stderr.write(f'Syntax error, token={p.type}')
